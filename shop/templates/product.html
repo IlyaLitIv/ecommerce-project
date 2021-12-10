@@ -8,17 +8,21 @@
 	<div class="container py-5">
 		<div class="row mt-5">
 			<div class="col-10 mx-auto col-md-6 my-3">
-				<img src="{% static 'images/teddy.png' %}">
+				<img src="{{product.image.url}}">
 			</div>
 		</div>
 	</div>
 	<div class="col-10 mx-auto col-md-6 my-3">
 		<div>
-			<h1 class="product_title">Teddy Bear</h1>
-			<h5 class="text-info font-italic mb-4">$9.99</h5>
+			<h1 class="product_title">{{product.name}}</h1>
+			<h5 class="text-info font-italic mb-4">{{product.price}}</h5>
 			<p class="product_desc">Product Description</p>
-			<p class="text-justify product_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae aliquet nec ullamcorper sit amet risus nullam eget felis. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. Sodales neque sodales ut etiam sit amet. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Viverra nibh cras pulvinar mattis. Integer vitae justo eget magna fermentum iaculis eu.</p>
+			<p class="text-justify product_text">{{product.description}}</p>
+			{% if product.stock <= 0 %}
 			<p class="text-justify product_text">Out of Stock</p>
+			{% else %}
+			<a href="{% url 'add_cart' product.id %}">Add to Cart</a>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
